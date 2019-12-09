@@ -15,16 +15,17 @@ class SongController extends Controller
         $this->songService = $songService;
     }
 
-    function create()
+    function create($id)
     {
-        return view('song.create');
+        $user_id = $id;
+        return view('song.create', compact('user_id'));
     }
 
-    function store(Request $request, $user_id)
+    function store(Request $request)
     {
         try {
             $message = 'Them moi thanh Cong';
-            $this->songService->create($request, $user_id);
+            $this->songService->create($request);
             return $message;
         }
         catch (\Exception $e){

@@ -18,7 +18,7 @@ class CreateSongsTable extends Migration
             $table->string('name')->nullable();
             $table->string('desc')->nullable();
             $table->string('file')->nullable();
-            $table->string('image')->nullable();
+            $table->string('images')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

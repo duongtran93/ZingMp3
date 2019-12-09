@@ -11,8 +11,13 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
 
-    public function index() {
-        return view('user.index');
+    public function index($id) {
+        $user = User::find($id);
+        return view('user.index', compact('user'));
+    }
+    public function createSong()
+    {
+
     }
 
     public function edit($id) {

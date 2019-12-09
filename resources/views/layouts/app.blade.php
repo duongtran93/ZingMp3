@@ -56,7 +56,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('user.index', Auth::user()->name) }}">Trang Cá Nhân</a>
+                                    <a class="dropdown-item" href="{{ route('user.index', Auth::user()->id) }}">Trang Cá Nhân</a>
                                     <a class="dropdown-item" href="{{ route('user.edit', Auth::user()->id) }}">Đổi Thông Tin</a>
                                     <a class="dropdown-item" href="{{ route('user.editpass') }}">Đổi Mật Khẩu</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"

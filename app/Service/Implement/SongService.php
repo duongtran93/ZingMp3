@@ -18,23 +18,23 @@ class SongService implements ServiceInterface
         $this->songRepository = $songRepository;
     }
 
-    function create($request, $user_id)
+    function create($request)
     {
         $newSong = new Song();
 
         $newSong->name = $request->name;
-        $newSong->description = $request->description;
-        if ($request->hasFile('mp3')){
-            $image = $request->file;
-            $path = $image->store('songs/files', 'public');
+        $newSong->desc = $request->description;
+        if ($request->hasFile('file')){
+            $file = $request->file('file');
+            $path = $file->store('songs', 'public');
             $newSong->file = $path;
         }
         if ($request->hasFile('image')){
-            $image = $request->image;
-            $path = $image->store('songs/images', 'public');
+            $img = $request->file('image');
+            $path = $img->store('img', 'public');
             $newSong->image = $path;
         }
-        $newSong->user_id = $user_id;
+        $newSong->user_id = $request->user_id;
         $this->songRepository->save($newSong);
     }
 
@@ -56,7 +56,7 @@ class SongService implements ServiceInterface
             $pathImage = $newImage->store('songs/files', 'public');
             $song->file = $pathImage;
         }
-        if ($request->hasFile('image')){
+        if ($request->hasFile('images')){
             $oldImage = $song->file;
             if ($oldImage){
                 Storage::disk('public')->delete($oldImage);
