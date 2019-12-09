@@ -29,3 +29,7 @@ Route::prefix('user')->group(function () {
     Route::post('/change-password', 'UserController@updatepass')->name('user.updatepass');
     Route::get('{name}', 'UserController@index')->name('user.index');
 });
+
+Route::prefix('song')->group(function () {
+
+});
