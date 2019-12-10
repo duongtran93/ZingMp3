@@ -20,6 +20,7 @@ class UserController extends Controller
         return view('user.edit', compact('user'));
     }
 
+
     public function update(Request $request, $id) {
         $user = User::findOrFail($id);
         $user->name = $request->name;
