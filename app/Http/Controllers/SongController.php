@@ -57,6 +57,12 @@ class SongController extends Controller
         try {
             $message = 'Xoa bai hat thanh Cong';
             $song = $this->songService->findById($id);
+            if ($song->file){
+                Storage::disk('public')->delete($song->file);
+            }
+            if ($song->image){
+                Storage::disk('public')->delete($song->image);
+            }
             $this->songService->delete($song);
             return $message;
         }

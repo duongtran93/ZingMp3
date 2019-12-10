@@ -26,12 +26,12 @@ class SongService implements ServiceInterface
         $newSong->desc = $request->description;
         if ($request->hasFile('file')){
             $file = $request->file('file');
-            $path = $file->store('songs', 'public');
+            $path = $file->store('songs/files', 'public');
             $newSong->file = $path;
         }
         if ($request->hasFile('image')){
             $img = $request->file('image');
-            $path = $img->store('img', 'public');
+            $path = $img->store('songs/images', 'public');
             $newSong->image = $path;
         }
         $newSong->user_id = $request->user_id;
@@ -48,13 +48,13 @@ class SongService implements ServiceInterface
         $song->name = $request->name;
         $song->description = $request->description;
         if ($request->hasFile('file')){
-            $oldImage = $song->file;
-            if ($oldImage){
-                Storage::disk('public')->delete($oldImage);
+            $oldSong= $song->file;
+            if ($oldSong){
+                Storage::disk('public')->delete($oldSong);
             }
-            $newImage = $request->file;
-            $pathImage = $newImage->store('songs/files', 'public');
-            $song->file = $pathImage;
+            $newSong = $request->file;
+            $pathSong = $newSong->store('songs/files', 'public');
+            $song->file = $pathSong;
         }
         if ($request->hasFile('images')){
             $oldImage = $song->file;
